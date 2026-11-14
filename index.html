@@ -18,7 +18,10 @@
 html,body{height:100%}
 body{background:#E8250F;color:#fff;font-family:Outfit,system-ui,sans-serif;display:flex;flex-direction:column;min-height:100svh;-webkit-font-smoothing:antialiased}
 main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px}
-.q{font-weight:400;font-size:clamp(17px,2.4vw,22px);opacity:.92;margin-bottom:18px}
+.q{position:relative;height:1.4em;width:100%;font-weight:400;font-size:clamp(17px,2.4vw,22px);margin-bottom:18px;overflow:hidden}
+.q span{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(100%);transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .55s}
+.q span.on{opacity:.95;transform:none}
+.q span.off{opacity:0;transform:translateY(-100%)}
 .logo{font-weight:800;font-size:clamp(54px,12vw,150px);letter-spacing:-.035em;line-height:1;white-space:nowrap}
 .logo .s{color:#0A1520}
 .logo i{display:inline-block;width:.22em;height:.22em;border-radius:50%;background:#fff;margin-left:.06em;vertical-align:baseline}
@@ -32,12 +35,16 @@ footer a{color:#fff}
 </head>
 <body>
 <main>
-  <p class="q">Broker mı olmak istiyorsun?</p>
+  <p class="q" aria-live="polite"><span class="on">Broker mı olmak istiyorsun?</span><span>Danışman mı olmak istiyorsun?</span><span>Ofisine asistan mı lazım?</span><span>Ofisine ofis müdürü mü lazım?</span><span>Ofisine recruiter mı lazım?</span><span>Ofisine sosyal medyacı mı lazım?</span></p>
   <h1 class="logo">önce<span class="s">sistem</span><i></i></h1>
   <div class="rule"></div>
   <p class="soon">Yakında.</p>
   <a class="cta" href="https://ig.me/m/oncesistem" target="_blank" rel="noopener">Instagram'dan “SİSTEM” yaz →</a>
 </main>
 <footer><a href="https://instagram.com/oncesistem" target="_blank" rel="noopener">@oncesistem</a></footer>
+<script>
+(function(){var a=document.querySelectorAll('.q span'),i=0;if(a.length<2)return;
+setInterval(function(){var c=a[i];c.className='off';i=(i+1)%a.length;var n=a[i];n.className='';void n.offsetWidth;n.className='on';setTimeout(function(){if(c!==a[i])c.className='';},600);},2600);})();
+</script>
 </body>
 </html>
